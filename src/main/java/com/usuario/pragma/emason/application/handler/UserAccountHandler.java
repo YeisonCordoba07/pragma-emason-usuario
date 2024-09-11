@@ -20,8 +20,6 @@ public class UserAccountHandler implements IUserAccountHandler {
     @Override
     public void createUserAccount(UserAccountRequestDTO userAccountRequestDTO) {
         UserAccount userAccount = iUserAccountRequestMapper.toUserAccount(userAccountRequestDTO);
-        System.out.println(userAccount.getName());
-        System.out.println(userAccount.getLastName());
         iUserAccountService.createUserAccount(userAccount);
     }
 }

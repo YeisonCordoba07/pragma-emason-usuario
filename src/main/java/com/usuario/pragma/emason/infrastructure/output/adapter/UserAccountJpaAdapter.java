@@ -15,7 +15,7 @@ public class UserAccountJpaAdapter implements IUserAccountPersistence {
 
     @Override
     public void createUserAccount(UserAccount userAccount) {
-        UserAccountEntity userAccount1 = iUserAccountEntityMapper.toEntity(userAccount);
-        iUserAccountRepository.save(userAccount1);
+        UserAccountEntity userAccountEntity = iUserAccountEntityMapper.toEntity(userAccount);
+        iUserAccountRepository.save(userAccountEntity);
     }
 }
