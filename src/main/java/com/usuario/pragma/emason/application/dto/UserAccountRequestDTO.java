@@ -2,9 +2,13 @@ package com.usuario.pragma.emason.application.dto;
 
 
 import jakarta.validation.constraints.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
+@Getter
+@Setter
 public class UserAccountRequestDTO {
     @NotNull(message = "Name is required")
     @NotBlank(message = "Name no be blank")
