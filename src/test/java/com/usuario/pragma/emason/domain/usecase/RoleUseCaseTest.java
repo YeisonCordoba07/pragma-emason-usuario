@@ -32,19 +32,18 @@ class RoleUseCaseTest {
         Role expectedRole = new Role("Admin", "Administrator role");
         expectedRole.setId(roleId);
 
-
         when(iRolePersistence.getRoleById(roleId)).thenReturn(expectedRole);
 
         // Act
         Role actualRole = roleUseCase.getRoleById(roleId);
 
         // Assert
-        assertNotNull(actualRole); // Verifica que el rol retornado no sea nulo
-        assertEquals(expectedRole.getId(), actualRole.getId()); // Verifica que el ID es correcto
-        assertEquals(expectedRole.getName(), actualRole.getName()); // Verifica que el nombre es correcto
-        assertEquals(expectedRole.getDescription(), actualRole.getDescription()); // Verifica que la descripción es correcta
+        assertNotNull(actualRole); // Verify that the returned role is not null
+        assertEquals(expectedRole.getId(), actualRole.getId()); // Verify that the ID is correct
+        assertEquals(expectedRole.getName(), actualRole.getName()); // Verify that the name is correct
+        assertEquals(expectedRole.getDescription(), actualRole.getDescription()); // Verify that the description is correct
 
-        // Verifica que el método de la capa de persistencia fue llamado una vez
+        // Verify that the persistence layer method was called once
         verify(iRolePersistence, times(1)).getRoleById(roleId);
     }
 
@@ -53,16 +52,16 @@ class RoleUseCaseTest {
         // Arrange
         Long roleId = 1L;
 
-        // Simular el comportamiento de la capa de persistencia para devolver `null` cuando no encuentra el rol
+        // Simulate the behavior of the persistence layer to return `null` when the role is not found
         when(iRolePersistence.getRoleById(roleId)).thenReturn(null);
 
         // Act
         Role actualRole = roleUseCase.getRoleById(roleId);
 
         // Assert
-        assertNull(actualRole); // Verifica que no se encontró el rol
+        assertNull(actualRole); // Verify that the role was not found
 
-        // Verifica que el método de la capa de persistencia fue llamado una vez
+        // Verify that the persistence layer method was called once
         verify(iRolePersistence, times(1)).getRoleById(roleId);
     }
 }

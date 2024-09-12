@@ -8,15 +8,15 @@ class EncryptPasswordTest {
 
     @Test
     void testEncryptPassword() {
-        // Arrange
+// Arrange
         String plainPassword = "myPassword123";
 
         // Act
         String hashedPassword = EncryptPassword.encryptPassword(plainPassword);
 
         // Assert
-        assertNotNull(hashedPassword); // Verifica que el hash no sea nulo
-        assertNotEquals(plainPassword, hashedPassword); // Verifica que el hash es diferente a la contraseña original
+        assertNotNull(hashedPassword); // Verify that the hash is not null
+        assertNotEquals(plainPassword, hashedPassword); // Verify that the hash is different from the original password
     }
 
     @Test
@@ -29,7 +29,7 @@ class EncryptPasswordTest {
         boolean isMatch = EncryptPassword.verifyPassword(plainPassword, hashedPassword);
 
         // Assert
-        assertTrue(isMatch); // Verifica que las contraseñas coinciden
+        assertTrue(isMatch); // Verify that the passwords match
     }
 
     @Test
@@ -43,6 +43,6 @@ class EncryptPasswordTest {
         boolean isMatch = EncryptPassword.verifyPassword(wrongPassword, hashedPassword);
 
         // Assert
-        assertFalse(isMatch); // Verifica que las contraseñas no coinciden
+        assertFalse(isMatch); // Verify that the passwords do not match
     }
 }
