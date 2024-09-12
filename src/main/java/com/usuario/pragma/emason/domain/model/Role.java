@@ -5,6 +5,7 @@ public class Role {
     private String name;
     private String description;
 
+
     public Role(String name, String description) {
         this.name = name;
         this.description = description;
@@ -12,6 +13,7 @@ public class Role {
     public Role(){
 
     }
+
 
     public Long getId() {
         return id;

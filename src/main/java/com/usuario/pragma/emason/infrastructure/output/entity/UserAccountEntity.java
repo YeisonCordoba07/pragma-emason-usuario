@@ -41,8 +41,11 @@ public class UserAccountEntity {
     @Column(nullable = false)
     private String password;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false)
+    private RoleEntity roleId;
 
     //Cambiar a RoleEntity
-    @Column(nullable = false)
-    private Long roleId;
+    //@Column(nullable = false)
+    //private Long roleId;
 }

@@ -1,6 +1,7 @@
 package com.usuario.pragma.emason.infrastructure.output.mapper;
 
 import com.usuario.pragma.emason.domain.model.UserAccount;
+import com.usuario.pragma.emason.infrastructure.output.entity.RoleEntity;
 import com.usuario.pragma.emason.infrastructure.output.entity.UserAccountEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
@@ -9,7 +10,26 @@ import org.mapstruct.ReportingPolicy;
         unmappedTargetPolicy = ReportingPolicy.IGNORE,
         unmappedSourcePolicy = ReportingPolicy.IGNORE)
 public interface IUserAccountEntityMapper {
-    UserAccountEntity toEntity(UserAccount userAccount);
-    UserAccount toUserAccount(UserAccountEntity userAccountEntity);
+    //UserAccountEntity toEntity(UserAccount userAccount);
+
+    default UserAccountEntity toEntity(UserAccount userAccount){
+        UserAccountEntity userAccountEntity = new UserAccountEntity();
+        //userAccountEntity.setId(userAccount.getId());
+        userAccountEntity.setName(userAccount.getName());
+        userAccountEntity.setLastName(userAccount.getLastName());
+        userAccountEntity.setIdentityDocument(userAccount.getIdentityDocument());
+        userAccountEntity.setPhone(userAccount.getPhone());
+        userAccountEntity.setBirthDate(userAccount.getBirthDate());
+        userAccountEntity.setEmail(userAccount.getEmail());
+        userAccountEntity.setPassword(userAccount.getPassword());
+
+        RoleEntity roleEntity = new RoleEntity();
+        roleEntity.setId(userAccount.getRoleId());
+        userAccountEntity.setRoleId(roleEntity);
+        return userAccountEntity;
+    }
+
+
+    //UserAccount toUserAccount(UserAccountEntity userAccountEntity);
 
 }
