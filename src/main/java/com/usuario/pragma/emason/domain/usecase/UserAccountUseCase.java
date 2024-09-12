@@ -1,5 +1,6 @@
 package com.usuario.pragma.emason.domain.usecase;
 
+import com.usuario.pragma.emason.domain.Exception.RoleNotFoundException;
 import com.usuario.pragma.emason.domain.Exception.UnderAgeException;
 import com.usuario.pragma.emason.domain.api.IUserAccountService;
 import com.usuario.pragma.emason.domain.model.UserAccount;
@@ -29,7 +30,7 @@ public class UserAccountUseCase implements IUserAccountService {
             throw new UnderAgeException(DomainConstant.UNDER_AGE_EXCEPTION);
         }
         if(iRolePersistence.getRoleById(userAccount.getRoleId()) == null){
-            throw new IllegalArgumentException(DomainConstant.ROLE_NOT_FOUND_EXCEPTION);
+            throw new RoleNotFoundException(DomainConstant.ROLE_NOT_FOUND_EXCEPTION);
         }
         userAccount.setPassword(EncryptPassword.encryptPassword(userAccount.getPassword()));
         iUserAccountPersistence.createUserAccount(userAccount);

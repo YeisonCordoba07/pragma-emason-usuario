@@ -43,6 +43,9 @@ dependencies {
 
 	implementation("org.mindrot:jbcrypt:0.4")
 	implementation ("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0")
+	testImplementation("org.mockito:mockito-core:4.6.1")
+	testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.0")
+	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.0")
 	//implementation ("org.springframework.boot:spring-boot-starter-security")
 	//implementation ("org.springframework.security:spring-security-core")
 }
