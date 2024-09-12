@@ -40,6 +40,10 @@ dependencies {
 	testImplementation ("org.mockito:mockito-core")
 
 	annotationProcessor ("org.mapstruct:mapstruct-processor:1.5.3.Final")
+
+	implementation("org.mindrot:jbcrypt:0.4")
+	//implementation ("org.springframework.boot:spring-boot-starter-security")
+	//implementation ("org.springframework.security:spring-security-core")
 }
 
 tasks.withType<Test> {

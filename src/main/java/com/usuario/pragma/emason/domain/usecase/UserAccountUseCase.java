@@ -6,6 +6,7 @@ import com.usuario.pragma.emason.domain.model.UserAccount;
 import com.usuario.pragma.emason.domain.spi.IRolePersistence;
 import com.usuario.pragma.emason.domain.spi.IUserAccountPersistence;
 import com.usuario.pragma.emason.domain.util.DomainConstant;
+import com.usuario.pragma.emason.domain.util.EncryptPassword;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -30,6 +31,7 @@ public class UserAccountUseCase implements IUserAccountService {
         if(iRolePersistence.getRoleById(userAccount.getRoleId()) == null){
             throw new IllegalArgumentException(DomainConstant.ROLE_NOT_FOUND_EXCEPTION);
         }
+        userAccount.setPassword(EncryptPassword.encryptPassword(userAccount.getPassword()));
         iUserAccountPersistence.createUserAccount(userAccount);
     }
 
