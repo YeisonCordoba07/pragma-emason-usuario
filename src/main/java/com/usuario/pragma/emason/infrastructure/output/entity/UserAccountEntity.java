@@ -45,7 +45,4 @@ public class UserAccountEntity {
     @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false)
     private RoleEntity roleId;
 
-    //Cambiar a RoleEntity
-    //@Column(nullable = false)
-    //private Long roleId;
 }

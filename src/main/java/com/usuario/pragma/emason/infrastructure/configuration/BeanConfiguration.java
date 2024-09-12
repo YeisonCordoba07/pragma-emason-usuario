@@ -1,6 +1,5 @@
 package com.usuario.pragma.emason.infrastructure.configuration;
 
-import com.usuario.pragma.emason.application.mapper.IUserAccountRequestMapper;
 import com.usuario.pragma.emason.domain.api.IRoleService;
 import com.usuario.pragma.emason.domain.api.IUserAccountService;
 import com.usuario.pragma.emason.domain.spi.IRolePersistence;

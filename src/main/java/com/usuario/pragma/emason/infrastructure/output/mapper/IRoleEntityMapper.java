@@ -10,6 +10,5 @@ import org.mapstruct.ReportingPolicy;
         unmappedTargetPolicy = ReportingPolicy.IGNORE,
         unmappedSourcePolicy = ReportingPolicy.IGNORE)
 public interface IRoleEntityMapper {
-    RoleEntity toEntity(Role role);
     Role toRole(RoleEntity roleEntity);
 }
