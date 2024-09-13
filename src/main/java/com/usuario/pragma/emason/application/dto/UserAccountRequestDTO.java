@@ -21,10 +21,7 @@ public class UserAccountRequestDTO {
     @NotNull(message = "Identity document is required")
     private Long identityDocument;
 
-    @NotNull(message = "Phone is required")
-    @NotBlank(message = "Phone no be blank")
     @Size(min = 7, max = 13, message = "Phone number must be between 7 and 13 digits")
-    //@Pattern(regexp = "\\+?\\d{1,13}", message = "Phone number must be a maximum of 13 digits and can contain the '+' symbol")
     private String phone;
 
     @NotNull(message = "Birth date is required")
@@ -37,10 +34,8 @@ public class UserAccountRequestDTO {
 
     @NotNull
     @NotBlank(message = "Password is required")
-    @Size(min = 8, message = "Password should be at least 8 characters")
     private String password;
 
     @NotNull(message = "Role is required")
     private Long roleId;
-
 }
