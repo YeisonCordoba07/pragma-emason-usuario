@@ -1,13 +1,12 @@
 package com.usuario.pragma.emason.domain.usecase;
 
-import com.usuario.pragma.emason.domain.Exception.RoleNotFoundException;
-import com.usuario.pragma.emason.domain.Exception.UnderAgeException;
+import com.usuario.pragma.emason.domain.exception.RoleNotFoundException;
+import com.usuario.pragma.emason.domain.exception.UnderAgeException;
 import com.usuario.pragma.emason.domain.api.IUserAccountService;
 import com.usuario.pragma.emason.domain.model.UserAccount;
 import com.usuario.pragma.emason.domain.spi.IRolePersistence;
 import com.usuario.pragma.emason.domain.spi.IUserAccountPersistence;
 import com.usuario.pragma.emason.domain.util.DomainConstant;
-import com.usuario.pragma.emason.domain.util.EncryptPassword;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -32,7 +31,7 @@ public class UserAccountUseCase implements IUserAccountService {
         if(iRolePersistence.getRoleById(userAccount.getRoleId()) == null){
             throw new RoleNotFoundException(DomainConstant.ROLE_NOT_FOUND_EXCEPTION);
         }
-        userAccount.setPassword(EncryptPassword.encryptPassword(userAccount.getPassword()));
+
         iUserAccountPersistence.createUserAccount(userAccount);
     }
 

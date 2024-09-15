@@ -1,11 +1,12 @@
 package com.usuario.pragma.emason.domain.usecase;
 
-import com.usuario.pragma.emason.domain.Exception.RoleNotFoundException;
+
+import com.usuario.pragma.emason.domain.exception.RoleNotFoundException;
 import com.usuario.pragma.emason.domain.model.Role;
 import com.usuario.pragma.emason.domain.spi.IRolePersistence;
 import com.usuario.pragma.emason.domain.spi.IUserAccountPersistence;
 import com.usuario.pragma.emason.domain.util.DomainConstant;
-import com.usuario.pragma.emason.domain.Exception.UnderAgeException;
+import com.usuario.pragma.emason.domain.exception.UnderAgeException;
 import com.usuario.pragma.emason.domain.model.UserAccount;
 
 
@@ -55,8 +56,6 @@ class UserAccountUseCaseTest {
 
         // Assert
         verify(iUserAccountPersistence).createUserAccount(any(UserAccount.class));
-        // Verify that the password was encrypted
-        assertNotEquals("password123", userAccount.getPassword());
 
     }
 

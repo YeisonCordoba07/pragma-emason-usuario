@@ -1,6 +1,6 @@
 package com.usuario.pragma.emason.infrastructure.output.adapter;
 
-import com.usuario.pragma.emason.domain.Exception.RoleNotFoundException;
+import com.usuario.pragma.emason.domain.exception.RoleNotFoundException;
 import com.usuario.pragma.emason.domain.model.Role;
 import com.usuario.pragma.emason.domain.spi.IRolePersistence;
 import com.usuario.pragma.emason.domain.util.DomainConstant;
@@ -17,6 +17,7 @@ public class RoleJpaAdapter implements IRolePersistence {
 
     private final IRoleRepository iRoleRepository;
     private final IRoleEntityMapper iRoleEntityMapper;
+
 
     @Override
     public Role getRoleById(Long id) {

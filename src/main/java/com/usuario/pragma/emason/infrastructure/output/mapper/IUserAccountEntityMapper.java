@@ -10,11 +10,11 @@ import org.mapstruct.ReportingPolicy;
         unmappedTargetPolicy = ReportingPolicy.IGNORE,
         unmappedSourcePolicy = ReportingPolicy.IGNORE)
 public interface IUserAccountEntityMapper {
-    //UserAccountEntity toEntity(UserAccount userAccount);
+
 
     default UserAccountEntity toEntity(UserAccount userAccount){
         UserAccountEntity userAccountEntity = new UserAccountEntity();
-        //userAccountEntity.setId(userAccount.getId());
+
         userAccountEntity.setName(userAccount.getName());
         userAccountEntity.setLastName(userAccount.getLastName());
         userAccountEntity.setIdentityDocument(userAccount.getIdentityDocument());
@@ -29,7 +29,5 @@ public interface IUserAccountEntityMapper {
         return userAccountEntity;
     }
 
-
-    //UserAccount toUserAccount(UserAccountEntity userAccountEntity);
 
 }

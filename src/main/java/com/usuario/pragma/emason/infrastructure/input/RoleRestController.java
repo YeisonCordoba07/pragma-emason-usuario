@@ -24,20 +24,20 @@ public class RoleRestController {
     private final IRoleHandler iRoleHandler;
 
     @Operation(
-            summary = ApiDocumentationConstants.Role.OPERATION_SUMMARY_GET_BY_ID,
-            description = ApiDocumentationConstants.Role.OPERATION_DESCRIPTION_GET_BY_ID
+            summary = ApiDocumentationConstants.OPERATION_SUMMARY_GET_BY_ID,
+            description = ApiDocumentationConstants.OPERATION_DESCRIPTION_GET_BY_ID
     )
     @ApiResponses(value = {
             @ApiResponse(
-                    responseCode = "200",
-                    description = ApiDocumentationConstants.Role.RESPONSE_200_DESCRIPTION),
+                    responseCode = ApiDocumentationConstants.STATUS_200,
+                    description = ApiDocumentationConstants.RESPONSE_200_DESCRIPTION),
             @ApiResponse(
-                    responseCode = "404",
-                    description = ApiDocumentationConstants.Role.RESPONSE_404_DESCRIPTION)
+                    responseCode = ApiDocumentationConstants.STATUS_404,
+                    description = ApiDocumentationConstants.RESPONSE_404_DESCRIPTION)
     })
     @GetMapping("/{id}")
     public ResponseEntity<RoleResponseDTO> getRoleById(
-            @Parameter(description = ApiDocumentationConstants.Role.PATH_PARAM_DESCRIPTION)
+            @Parameter(description = ApiDocumentationConstants.PATH_PARAM_DESCRIPTION)
             @PathVariable Long id) {
         return ResponseEntity.ok(iRoleHandler.getRoleById(id));
     }

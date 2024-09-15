@@ -32,20 +32,20 @@ public class UserAccountRestController {
 
 
     @Operation(
-            summary = ApiDocumentationConstants.UserAccount.OPERATION_SUMMARY_CREATE,
-            description = ApiDocumentationConstants.UserAccount.OPERATION_DESCRIPTION_CREATE
+            summary = ApiDocumentationConstants.OPERATION_SUMMARY_CREATE,
+            description = ApiDocumentationConstants.OPERATION_DESCRIPTION_CREATE
     )
     @ApiResponses(value = {
             @ApiResponse(
-                    responseCode = "201",
-                    description = ApiDocumentationConstants.UserAccount.RESPONSE_201_DESCRIPTION),
+                    responseCode = ApiDocumentationConstants.STATUS_201,
+                    description = ApiDocumentationConstants.RESPONSE_201_DESCRIPTION),
             @ApiResponse(
-                    responseCode = "400",
-                    description = ApiDocumentationConstants.UserAccount.RESPONSE_400_DESCRIPTION,
+                    responseCode = ApiDocumentationConstants.STATUS_400,
+                    description = ApiDocumentationConstants.RESPONSE_400_DESCRIPTION,
                     content = @Content(schema = @Schema(implementation = Error.class))),
             @ApiResponse(
-                    responseCode = "500",
-                    description = ApiDocumentationConstants.UserAccount.RESPONSE_500_DESCRIPTION)
+                    responseCode = ApiDocumentationConstants.STATUS_500,
+                    description = ApiDocumentationConstants.RESPONSE_500_DESCRIPTION)
     })
     @PostMapping("/create")
     public ResponseEntity<Void> createUserAccount(@Valid @RequestBody UserAccountRequestDTO userAccountRequestDTO) {

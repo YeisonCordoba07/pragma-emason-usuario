@@ -1,4 +1,4 @@
-package com.usuario.pragma.emason.domain.Exception;
+package com.usuario.pragma.emason.domain.exception;
 
 public class UnderAgeException  extends RuntimeException {
     public UnderAgeException(String message) {
