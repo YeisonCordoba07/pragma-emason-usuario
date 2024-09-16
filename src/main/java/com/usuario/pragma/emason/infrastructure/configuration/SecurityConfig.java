@@ -44,7 +44,7 @@ public class SecurityConfig {
 
     public AuthenticationSuccessHandler successHandler(){
         return ((request, response, authentication) -> {
-            response.sendRedirect("/");
+            response.sendRedirect("/role/session");
         });
     }
 
