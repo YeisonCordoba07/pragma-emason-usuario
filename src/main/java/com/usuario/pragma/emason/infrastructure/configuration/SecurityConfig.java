@@ -36,6 +36,7 @@ public class SecurityConfig {
                                 .invalidSessionUrl("/login")
                                 .maximumSessions(1)
                                 .expiredUrl("/login")
+                                .sessionRegistry(sessionRegistry())
                 );
 
         return httpSecurity.build();
