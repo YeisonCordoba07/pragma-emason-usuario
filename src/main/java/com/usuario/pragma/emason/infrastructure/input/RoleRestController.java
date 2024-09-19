@@ -29,7 +29,7 @@ import java.util.Map;
 @Validated
 public class RoleRestController {
     private final IRoleHandler iRoleHandler;
-    private final SessionRegistry sessionRegistry;
+
 
     @Operation(
             summary = ApiDocumentationConstants.OPERATION_SUMMARY_GET_BY_ID,
@@ -51,31 +51,6 @@ public class RoleRestController {
     }
 
 
-@GetMapping("/session")
-    public ResponseEntity<?> getDetailsSession(){
-        String sessionId = "";
-        Role roleObject = null;
 
-        List<Object> sessions = sessionRegistry.getAllPrincipals();
-
-
-        for(Object session : sessions){
-            if(session instanceof Role){
-                roleObject = (Role) session;
-            }
-
-            List<SessionInformation> sessionInformations = sessionRegistry.getAllSessions(session, false);
-
-            for(SessionInformation sessionInformation : sessionInformations){
-                sessionId = sessionInformation.getSessionId();
-            }
-        }
-
-        Map<String, Object> response = new HashMap<>();
-        response.put("response", "Hola");
-        response.put("sessionId", sessionId);
-        response.put("sessionUser", roleObject);
-        return ResponseEntity.ok(response);
-    }
 
 }

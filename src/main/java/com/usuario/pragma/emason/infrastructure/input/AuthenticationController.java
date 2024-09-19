@@ -1,8 +1,10 @@
 package com.usuario.pragma.emason.infrastructure.input;
 
-import com.usuario.pragma.emason.application.dto.AuthenticationRequest;
-import com.usuario.pragma.emason.application.dto.AuthenticationResponse;
-import jakarta.validation.Valid;
+import com.usuario.pragma.emason.application.dto.AuthResponseDTO;
+import com.usuario.pragma.emason.application.dto.LoginRequestDTO;
+import com.usuario.pragma.emason.application.dto.RegisterRequestDTO;
+import com.usuario.pragma.emason.application.handler.IAuthHandler;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,10 +13,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/auth")
+@AllArgsConstructor
 public class AuthenticationController {
 
-    @PostMapping("authenticate")
-    public ResponseEntity<AuthenticationResponse> login(@Valid @RequestBody AuthenticationRequest authenticationRequest){
-        return null;
+    private final IAuthHandler iAuthHandler;
+
+    @PostMapping("/authenticate")
+    public ResponseEntity<AuthResponseDTO> login(@RequestBody LoginRequestDTO loginRequestDTO){
+        return ResponseEntity.ok(iAuthHandler.login(loginRequestDTO));
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<AuthResponseDTO> register(@RequestBody RegisterRequestDTO registerRequestDTO){
+        return ResponseEntity.ok(iAuthHandler.register(registerRequestDTO));
     }
 }

@@ -28,9 +28,9 @@ public class UserAccountUseCase implements IUserAccountService {
         if(!isAdult(userAccount.getBirthDate())){
             throw new UnderAgeException(DomainConstant.UNDER_AGE_EXCEPTION);
         }
-        if(iRolePersistence.getRoleById(userAccount.getRoleId()) == null){
+        /*if(iRolePersistence.getRoleById(userAccount.getRole()) == null){
             throw new RoleNotFoundException(DomainConstant.ROLE_NOT_FOUND_EXCEPTION);
-        }
+        }*/
 
         iUserAccountPersistence.createUserAccount(userAccount);
     }

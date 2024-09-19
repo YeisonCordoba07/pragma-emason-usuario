@@ -1,13 +1,13 @@
 package com.usuario.pragma.emason.application.dto;
 
-public class AuthenticationRequest {
+public class AuthRequestDTO {
     private String username;
     private String password;
 
-    public AuthenticationRequest() {
+    public AuthRequestDTO() {
     }
 
-    public AuthenticationRequest(String username, String password) {
+    public AuthRequestDTO(String username, String password) {
         this.username = username;
         this.password = password;
     }

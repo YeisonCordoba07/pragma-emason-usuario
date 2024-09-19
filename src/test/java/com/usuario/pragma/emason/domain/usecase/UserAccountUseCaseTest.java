@@ -43,7 +43,7 @@ class UserAccountUseCaseTest {
         // Arrange
         UserAccount userAccount = new UserAccount();
         userAccount.setBirthDate(LocalDate.of(2000, 1, 1));
-        userAccount.setRoleId(1L);
+        userAccount.setRole(1L);
         userAccount.setPassword("password123");
 
         Role role = new Role();
@@ -65,7 +65,7 @@ class UserAccountUseCaseTest {
         // Arrange
         UserAccount userAccount = new UserAccount();
         userAccount.setBirthDate(LocalDate.now().minusYears(16)); // User is 16 years old
-        userAccount.setRoleId(1L);
+        userAccount.setRole(1L);
 
         // Act & Assert
         UnderAgeException exception = assertThrows(UnderAgeException.class, () ->
@@ -82,7 +82,7 @@ class UserAccountUseCaseTest {
         // Arrange
         UserAccount userAccount = new UserAccount();
         userAccount.setBirthDate(LocalDate.of(2000, 1, 1));
-        userAccount.setRoleId(1L);
+        userAccount.setRole(1L);
         userAccount.setPassword("password123");
 
         when(iRolePersistence.getRoleById(1L)).thenReturn(null);

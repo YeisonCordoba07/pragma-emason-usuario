@@ -31,7 +31,7 @@ class UserAccountTest {
         assertEquals(birthDate, userAccount.getBirthDate());
         assertEquals(email, userAccount.getEmail());
         assertEquals(password, userAccount.getPassword());
-        assertEquals(roleId, userAccount.getRoleId());
+        assertEquals(roleId, userAccount.getRole());
     }
 
     @Test
@@ -55,7 +55,7 @@ class UserAccountTest {
         userAccount.setBirthDate(birthDate);
         userAccount.setEmail(email);
         userAccount.setPassword(password);
-        userAccount.setRoleId(roleId);
+        userAccount.setRole(roleId);
 
         // Assert
         assertEquals(name, userAccount.getName());
@@ -65,7 +65,7 @@ class UserAccountTest {
         assertEquals(birthDate, userAccount.getBirthDate());
         assertEquals(email, userAccount.getEmail());
         assertEquals(password, userAccount.getPassword());
-        assertEquals(roleId, userAccount.getRoleId());
+        assertEquals(roleId, userAccount.getRole());
     }
 
 

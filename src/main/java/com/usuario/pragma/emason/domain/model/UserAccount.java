@@ -1,14 +1,27 @@
 package com.usuario.pragma.emason.domain.model;
 
+import com.usuario.pragma.emason.infrastructure.output.entity.EnumRole;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
+import java.util.Collection;
+import java.util.List;
 
-@Getter
-@Setter
-public class UserAccount {
+@Entity
+@Table(name="user_account")
 
+@AllArgsConstructor
+
+public class UserAccount implements UserDetails {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String lastName;
@@ -18,10 +31,11 @@ public class UserAccount {
     private String email;
     private String password;
 
-    private Long roleId;
+    @Enumerated(EnumType.STRING)
+    private EnumRole role;
 
 
-    public UserAccount(String name, String lastName, Long identityDocument, String phone, LocalDate birthDate, String email, String password, Long roleId) {
+    public UserAccount(String name, String lastName, Long identityDocument, String phone, LocalDate birthDate, String email, String password, EnumRole role) {
         this.name = name;
         this.lastName = lastName;
         this.identityDocument = identityDocument;
@@ -29,13 +43,47 @@ public class UserAccount {
         this.birthDate = birthDate;
         this.email = email;
         this.password = password;
-        this.roleId = roleId;
+        this.role = role;
     }
 
 
     public UserAccount() {
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role.name()));
+    }
+
+
+
+    @Override
+    public String getUsername() {
+        return "Debería retornar EMAIL NO USERNAME";
+    }
+
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 
 
     public Long getId() {
@@ -101,11 +149,11 @@ public class UserAccount {
         this.password = password;
     }
 
-    public Long getRoleId() {
-        return roleId;
+    public EnumRole getRole() {
+        return role;
     }
 
-    public void setRoleId(Long roleId) {
-        this.roleId = roleId;
+    public void setRole(EnumRole role) {
+        this.role = role;
     }
 }
