@@ -59,7 +59,7 @@ public class UserAccountEntity implements UserDetails {
 
     @Override
     public String getUsername() {
-        return "Debería retornar EMAIL NO USERNAME";
+        return email;
     }
 
 

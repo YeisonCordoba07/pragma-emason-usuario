@@ -3,9 +3,6 @@ package com.usuario.pragma.emason.domain.model;
 import com.usuario.pragma.emason.infrastructure.output.entity.EnumRole;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -28,6 +25,7 @@ public class UserAccount implements UserDetails {
     private Long identityDocument;
     private String phone;
     private LocalDate birthDate;
+    @Basic
     private String email;
     private String password;
 
@@ -59,7 +57,7 @@ public class UserAccount implements UserDetails {
 
     @Override
     public String getUsername() {
-        return "Debería retornar EMAIL NO USERNAME";
+        return email;
     }
 
 
@@ -93,6 +91,7 @@ public class UserAccount implements UserDetails {
     public void setId(Long id) {
         this.id = id;
     }
+
     public String getName() {
         return name;
     }

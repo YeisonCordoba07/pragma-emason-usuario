@@ -1,6 +1,6 @@
 package com.usuario.pragma.emason.domain.usecase;
 
-import com.usuario.pragma.emason.domain.exception.RoleNotFoundException;
+
 import com.usuario.pragma.emason.domain.exception.UnderAgeException;
 import com.usuario.pragma.emason.domain.api.IUserAccountService;
 import com.usuario.pragma.emason.domain.model.UserAccount;
@@ -16,10 +16,13 @@ public class UserAccountUseCase implements IUserAccountService {
     private final IUserAccountPersistence iUserAccountPersistence;
     private final IRolePersistence iRolePersistence;
 
+
+
     public UserAccountUseCase(IUserAccountPersistence iUserAccountPersistence, IRolePersistence iRolePersistence) {
         this.iUserAccountPersistence = iUserAccountPersistence;
         this.iRolePersistence = iRolePersistence;
     }
+
 
 
 
@@ -34,6 +37,16 @@ public class UserAccountUseCase implements IUserAccountService {
 
         iUserAccountPersistence.createUserAccount(userAccount);
     }
+
+
+
+
+    @Override
+    public UserAccount findByEmail(String email) {
+        return iUserAccountPersistence.findByEmail(email);
+    }
+
+
 
 
     public boolean isAdult(LocalDate birthDate) {

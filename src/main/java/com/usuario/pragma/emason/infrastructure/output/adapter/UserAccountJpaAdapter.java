@@ -25,4 +25,11 @@ public class UserAccountJpaAdapter implements IUserAccountPersistence {
 
         iUserAccountRepository.save(userAccountEntity);
     }
+
+    @Override
+    public UserAccount findByEmail(String email) {
+        UserAccountEntity userAccountEntity =  iUserAccountRepository.findByEmail(email);
+        return iUserAccountEntityMapper.toUserAccount(userAccountEntity);
+
+    }
 }

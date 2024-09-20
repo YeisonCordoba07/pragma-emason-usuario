@@ -2,7 +2,6 @@ package com.usuario.pragma.emason.infrastructure.output.mapper;
 
 import com.usuario.pragma.emason.domain.model.UserAccount;
 import com.usuario.pragma.emason.infrastructure.output.entity.EnumRole;
-import com.usuario.pragma.emason.infrastructure.output.entity.RoleEntity;
 import com.usuario.pragma.emason.infrastructure.output.entity.UserAccountEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
@@ -29,6 +28,26 @@ public interface IUserAccountEntityMapper {
         //roleEntity.setId(userAccount.getRoleId());
         userAccountEntity.setRole(EnumRole.AUX_BODEGA);
         return userAccountEntity;
+    }
+
+
+
+    default UserAccount toUserAccount(UserAccountEntity userAccountEntity){
+        UserAccount userAccount = new UserAccount();
+
+        userAccount.setName(userAccountEntity.getName());
+        userAccount.setLastName(userAccountEntity.getLastName());
+        userAccount.setIdentityDocument(userAccountEntity.getIdentityDocument());
+        userAccount.setPhone(userAccountEntity.getPhone());
+        userAccount.setBirthDate(userAccountEntity.getBirthDate());
+        userAccount.setEmail(userAccountEntity.getEmail());
+        userAccount.setPassword(userAccountEntity.getPassword());
+
+        //RoleEntity roleEntity = new RoleEntity();
+
+        //roleEntity.setId(userAccount.getRoleId());
+        userAccount.setRole(userAccountEntity.getRole());
+        return userAccount;
     }
 
 

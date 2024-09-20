@@ -18,7 +18,7 @@ public class AuthenticationController {
 
     private final IAuthHandler iAuthHandler;
 
-    @PostMapping("/authenticate")
+    @PostMapping("/login")
     public ResponseEntity<AuthResponseDTO> login(@RequestBody LoginRequestDTO loginRequestDTO){
         return ResponseEntity.ok(iAuthHandler.login(loginRequestDTO));
     }
