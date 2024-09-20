@@ -22,7 +22,7 @@ public class JwtHandler {
         return Jwts.builder()
                 .setSubject(userDetails.getUsername())  // Se usa el email como subject
                 .setIssuedAt(new Date())  // Fecha de emisión
-                .setExpiration(new Date(System.currentTimeMillis() + 300000))  // Expiración: 1 día
+                .setExpiration(new Date(System.currentTimeMillis() + 60000))
                 .signWith(key)  // Firma con la clave secreta
                 .compact();  // Compacta y devuelve el token
     }

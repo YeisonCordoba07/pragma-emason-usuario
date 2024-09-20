@@ -3,6 +3,7 @@ package com.usuario.pragma.emason.infrastructure.input;
 import com.usuario.pragma.emason.application.dto.AuthResponseDTO;
 import com.usuario.pragma.emason.application.dto.LoginRequestDTO;
 import com.usuario.pragma.emason.application.dto.RegisterRequestDTO;
+import com.usuario.pragma.emason.application.dto.UserAccountRequestDTO;
 import com.usuario.pragma.emason.application.handler.IAuthHandler;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<AuthResponseDTO> register(@RequestBody RegisterRequestDTO registerRequestDTO){
-        return ResponseEntity.ok(iAuthHandler.register(registerRequestDTO));
+    public ResponseEntity<AuthResponseDTO> register(@RequestBody UserAccountRequestDTO userAccountRequestDTO){
+        return ResponseEntity.ok(iAuthHandler.register(userAccountRequestDTO));
     }
 }
