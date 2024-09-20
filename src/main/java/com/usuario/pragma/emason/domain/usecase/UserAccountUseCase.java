@@ -4,7 +4,6 @@ package com.usuario.pragma.emason.domain.usecase;
 import com.usuario.pragma.emason.domain.exception.UnderAgeException;
 import com.usuario.pragma.emason.domain.api.IUserAccountService;
 import com.usuario.pragma.emason.domain.model.UserAccount;
-import com.usuario.pragma.emason.domain.spi.IRolePersistence;
 import com.usuario.pragma.emason.domain.spi.IUserAccountPersistence;
 import com.usuario.pragma.emason.domain.util.DomainConstant;
 
@@ -30,9 +29,6 @@ public class UserAccountUseCase implements IUserAccountService {
         if(!isAdult(userAccount.getBirthDate())){
             throw new UnderAgeException(DomainConstant.UNDER_AGE_EXCEPTION);
         }
-        /*if(iRolePersistence.getRoleById(userAccount.getRole()) == null){
-            throw new RoleNotFoundException(DomainConstant.ROLE_NOT_FOUND_EXCEPTION);
-        }*/
 
         iUserAccountPersistence.createUserAccount(userAccount);
     }

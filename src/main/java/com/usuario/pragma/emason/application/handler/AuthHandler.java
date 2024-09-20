@@ -3,7 +3,6 @@ package com.usuario.pragma.emason.application.handler;
 import com.usuario.pragma.emason.application.dto.AuthResponseDTO;
 import com.usuario.pragma.emason.application.dto.LoginRequestDTO;
 import com.usuario.pragma.emason.application.dto.RegisterRequestDTO;
-import com.usuario.pragma.emason.application.mapper.IUserAccountRequestMapper;
 import com.usuario.pragma.emason.domain.api.IUserAccountService;
 import com.usuario.pragma.emason.domain.model.UserAccount;
 import com.usuario.pragma.emason.infrastructure.output.entity.EnumRole;
