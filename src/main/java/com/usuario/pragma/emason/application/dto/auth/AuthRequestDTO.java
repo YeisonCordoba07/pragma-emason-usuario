@@ -1,4 +1,4 @@
-package com.usuario.pragma.emason.application.dto;
+package com.usuario.pragma.emason.application.dto.auth;
 
 public class AuthRequestDTO {
     private String username;

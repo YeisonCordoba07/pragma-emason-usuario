@@ -1,4 +1,4 @@
-package com.usuario.pragma.emason.application.dto;
+package com.usuario.pragma.emason.application.dto.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

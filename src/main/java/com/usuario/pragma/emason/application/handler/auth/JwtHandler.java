@@ -1,4 +1,4 @@
-package com.usuario.pragma.emason.application.handler;
+package com.usuario.pragma.emason.application.handler.auth;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

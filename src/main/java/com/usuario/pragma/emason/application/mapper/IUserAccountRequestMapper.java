@@ -1,7 +1,7 @@
 package com.usuario.pragma.emason.application.mapper;
 
 
-import com.usuario.pragma.emason.application.dto.RegisterRequestDTO;
+
 import com.usuario.pragma.emason.application.dto.UserAccountRequestDTO;
 import com.usuario.pragma.emason.domain.model.UserAccount;
 import com.usuario.pragma.emason.infrastructure.output.entity.EnumRole;
