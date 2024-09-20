@@ -14,13 +14,12 @@ import java.time.Period;
 public class UserAccountUseCase implements IUserAccountService {
 
     private final IUserAccountPersistence iUserAccountPersistence;
-    private final IRolePersistence iRolePersistence;
 
 
 
-    public UserAccountUseCase(IUserAccountPersistence iUserAccountPersistence, IRolePersistence iRolePersistence) {
+    public UserAccountUseCase(IUserAccountPersistence iUserAccountPersistence) {
         this.iUserAccountPersistence = iUserAccountPersistence;
-        this.iRolePersistence = iRolePersistence;
+
     }
 
 

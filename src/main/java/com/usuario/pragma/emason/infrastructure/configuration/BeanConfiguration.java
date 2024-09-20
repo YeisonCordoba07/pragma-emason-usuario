@@ -36,7 +36,7 @@ public class BeanConfiguration {
 
     @Bean
     public IUserAccountService iUserAccountService() {
-        return new UserAccountUseCase(iUserAccountPersistence(), iRolePersistence());
+        return new UserAccountUseCase(iUserAccountPersistence());
     }
 
 

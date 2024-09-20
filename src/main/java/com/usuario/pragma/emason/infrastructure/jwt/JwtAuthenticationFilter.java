@@ -6,7 +6,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,17 +26,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 
 
-    /**
-     * Same contract as for {@code doFilter}, but guaranteed to be
-     * just invoked once per request within a single request thread.
-     * See {@link #shouldNotFilterAsyncDispatch()} for details.
-     * <p>Provides HttpServletRequest and HttpServletResponse arguments instead of the
-     * default ServletRequest and ServletResponse ones.
-     *
-     * @param request
-     * @param response
-     * @param filterChain
-     */
+
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
@@ -45,25 +34,15 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         final String token = getTokenFromRequest(request);
         final String email;
-        System.out.println("-------Token:" + token);;
-        System.out.println("request "+request);
 
         if(token == null){
             filterChain.doFilter(request, response);
-            System.out.println("Token is null ##############################################################################################################################");
             return;
         }
         email = jwtHandler.getEmailFromToken(token);
-        System.out.println("Email jwt: "+email);
         if(email != null && SecurityContextHolder.getContext().getAuthentication() == null){
 
-            System.out.println("security "+SecurityContextHolder.getContext().getAuthentication());
             UserDetails userDetails = userDetailsService.loadUserByUsername(email);
-
-            System.out.println("UserDetails: "+userDetails.getUsername());
-            System.out.println("UserDetails: "+userDetails.getPassword());
-            System.out.println("UserDetails: "+userDetails.getAuthorities());
-
 
             if(jwtHandler.isTokenValid(token, userDetails)){
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
@@ -85,7 +64,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 
     private String getTokenFromRequest(HttpServletRequest request){
-        //final String bearerToken = request.getHeader("Authorization");
+
         final String bearerToken = request.getHeader("Authorization");
 
         if(StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")){

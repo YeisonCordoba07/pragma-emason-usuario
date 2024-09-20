@@ -21,7 +21,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class AuthHandler implements IAuthHandler {
 
     private final IUserAccountService iUserAccountService;
-    private final IUserAccountRequestMapper iUserAccountRequestMapper;
     private final JwtHandler jwtHandler;
     private final AuthenticationManager authenticationManager;
 
