@@ -1,5 +1,6 @@
 package com.usuario.pragma.emason.application.handler.auth;
 
+import com.usuario.pragma.emason.domain.model.UserAccount;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -18,23 +19,27 @@ public class JwtHandler {
 
     private final SecretKey key = Keys.hmacShaKeyFor("mi_clave_secreta_fija_que_debe_ser_larga_123456".getBytes());
 
-    public String getToken(UserDetails userDetails) {
+
+    public String getToken(String email) {
         return Jwts.builder()
-                .setSubject(userDetails.getUsername())  // Se usa el email como subject
+                .setSubject(email)  // Se usa el email como subject
                 .setIssuedAt(new Date())  // Fecha de emisión
                 .setExpiration(new Date(System.currentTimeMillis() + 60000))
                 .signWith(key)  // Firma con la clave secreta
                 .compact();  // Compacta y devuelve el token
     }
 
+
     public String getEmailFromToken(String token) {
         return getClaim(token, Claims::getSubject);
     }
 
-    public boolean isTokenValid(String token, UserDetails userDetails) {
+
+    public boolean isTokenValid(String token, String emailAccount) {
         final String email = getEmailFromToken(token);
-        return (email.equals(userDetails.getUsername()) && !isTokenExpired(token));
+        return (email.equals(emailAccount) && !isTokenExpired(token));
     }
+
 
     private Claims getAllClaims(String token){
         return Jwts
@@ -45,10 +50,12 @@ public class JwtHandler {
                 .getBody();  // Devuelve los claims (reclamaciones)
     }
 
+
     public <T> T getClaim(String token, Function<Claims, T> claimsResolver){
         final Claims claims = getAllClaims(token);
         return claimsResolver.apply(claims);
     }
+
 
     public Date getExpiration(String token){
         return getClaim(token, Claims::getExpiration);

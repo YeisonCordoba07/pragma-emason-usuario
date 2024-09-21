@@ -9,7 +9,6 @@ import com.usuario.pragma.emason.domain.model.UserAccount;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,8 +29,11 @@ public class AuthHandler implements IAuthHandler {
     @Override
     public AuthResponseDTO login(LoginRequestDTO loginRequestDTO) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequestDTO.getEmail(), loginRequestDTO.getPassword()));
-        UserDetails user = iUserAccountService.findByEmail(loginRequestDTO.getEmail());
-        String token = jwtHandler.getToken(user);
+        //UserDetails user = iUserAccountService.findByEmail(loginRequestDTO.getEmail());
+
+        UserAccount userAccount = iUserAccountService.findByEmail(loginRequestDTO.getEmail());
+
+        String token = jwtHandler.getToken(userAccount.getEmail());
         return AuthResponseDTO.builder()
                 .token(token)
                 .build();
@@ -47,7 +49,7 @@ public class AuthHandler implements IAuthHandler {
         iUserAccountService.createUserAccount(userAccount);
 
         return AuthResponseDTO.builder()
-                .token(jwtHandler.getToken(userAccount))
+                .token(jwtHandler.getToken(userAccount.getEmail()))
                 .build();
     }
 

@@ -1,6 +1,8 @@
 package com.usuario.pragma.emason.infrastructure.jwt;
 
 import com.usuario.pragma.emason.application.handler.auth.JwtHandler;
+import com.usuario.pragma.emason.domain.model.UserAccount;
+import com.usuario.pragma.emason.infrastructure.output.entity.UserAccountEntity;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -46,7 +48,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
             UserDetails userDetails = userDetailsService.loadUserByUsername(email);
 
-            if(jwtHandler.isTokenValid(token, userDetails)){
+            if(jwtHandler.isTokenValid(token, userDetails.getUsername())){
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                         userDetails,
                         null,
