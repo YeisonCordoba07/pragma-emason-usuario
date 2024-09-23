@@ -2,6 +2,13 @@ package com.usuario.pragma.emason.application.util;
 
 public class ApplicationConstants {
 
+
+    private ApplicationConstants() {
+
+    }
+
+
+
     //JWT HANDLER
     public static final String SECRET_KEY_PASSWORD = "mi_clave_secreta_fija_que_debe_ser_larga_123456";
 
