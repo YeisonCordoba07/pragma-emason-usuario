@@ -38,6 +38,7 @@ public class SecurityConfig {
                                 .requestMatchers("/brand/**").hasAuthority("ADMIN")
                                 .requestMatchers("/item/**").hasAuthority("ADMIN")
                                 .requestMatchers("/supply/**").hasAuthority("AUX_BODEGA")
+                                .requestMatchers("/cart/**").hasAuthority("CLIENTE")
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(sessionManagement ->
