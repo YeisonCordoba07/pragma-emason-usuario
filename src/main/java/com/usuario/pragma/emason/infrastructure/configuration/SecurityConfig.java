@@ -44,9 +44,12 @@ public class SecurityConfig {
                 )
                 .sessionManagement(sessionManagement ->
                         sessionManagement
-                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Every request must be authenticated with a token
                 )
+                // Verify the user credentials
+                // if the authentication is successful, create a authentication object which will have the user details like its roles and authorities.
                 .authenticationProvider(authProvider)
+                // Verify the jwt token before to sing in
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return httpSecurity.build();
