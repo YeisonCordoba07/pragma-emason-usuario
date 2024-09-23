@@ -52,6 +52,7 @@ public class AuthHandler implements IAuthHandler {
 
         iUserAccountService.createUserAccount(userAccount);
 
+
         return AuthResponseDTO.builder()
                 .token(jwtHandler.getToken(userAccount.getEmail()))
                 .role(userAccount.getRole().toString())

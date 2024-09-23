@@ -1,13 +1,11 @@
 package com.usuario.pragma.emason.application.handler.auth;
 
-import com.usuario.pragma.emason.domain.model.UserAccount;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import lombok.Getter;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-
 
 import javax.crypto.SecretKey;
 import java.util.Date;
@@ -24,9 +22,19 @@ public class JwtHandler {
         return Jwts.builder()
                 .setSubject(email)  // Se usa el email como subject
                 .setIssuedAt(new Date())  // Fecha de emisión
-                .setExpiration(new Date(System.currentTimeMillis() + 60000))
+                .setExpiration(new Date(System.currentTimeMillis() + 180000))
                 .signWith(key)  // Firma con la clave secreta
                 .compact();  // Compacta y devuelve el token
+    }
+
+    public String getToken(String email, String role) {
+        return Jwts.builder()
+                .setSubject(email)
+                .claim("role", "ROLE_" + role)  // Asegúrate de que el rol tenga el prefijo
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + + 180000))
+                .signWith(key)
+                .compact();
     }
 
 
