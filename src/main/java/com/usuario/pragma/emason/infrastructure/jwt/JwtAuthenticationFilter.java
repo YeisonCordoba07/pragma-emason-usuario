@@ -1,8 +1,6 @@
 package com.usuario.pragma.emason.infrastructure.jwt;
 
 import com.usuario.pragma.emason.application.handler.auth.JwtHandler;
-import com.usuario.pragma.emason.domain.model.UserAccount;
-import com.usuario.pragma.emason.infrastructure.output.entity.UserAccountEntity;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
