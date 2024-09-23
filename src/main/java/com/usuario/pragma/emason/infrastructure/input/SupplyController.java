@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 public class SupplyController {
 
+
+
     @PostMapping("/create")
     public ResponseEntity<String> supplyCategory(@RequestBody String supplyString){
         return ResponseEntity.ok("Supply created");

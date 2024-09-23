@@ -29,7 +29,6 @@ public class AuthHandler implements IAuthHandler {
     @Override
     public AuthResponseDTO login(LoginRequestDTO loginRequestDTO) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequestDTO.getEmail(), loginRequestDTO.getPassword()));
-        //UserDetails user = iUserAccountService.findByEmail(loginRequestDTO.getEmail());
 
         UserAccount userAccount = iUserAccountService.findByEmail(loginRequestDTO.getEmail());
 
@@ -48,8 +47,6 @@ public class AuthHandler implements IAuthHandler {
     public AuthResponseDTO register(UserAccountRequestDTO userAccountRequestDTO) {
 
         UserAccount userAccount = iUserAccountRequestMapper.toUserAccount(userAccountRequestDTO);
-
-
         iUserAccountService.createUserAccount(userAccount);
 
 
@@ -58,6 +55,5 @@ public class AuthHandler implements IAuthHandler {
                 .role(userAccount.getRole().toString())
                 .build();
     }
-
 
 }

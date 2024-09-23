@@ -1,6 +1,7 @@
 package com.usuario.pragma.emason.infrastructure.configuration;
 
 import com.usuario.pragma.emason.infrastructure.jwt.JwtAuthenticationFilter;
+import com.usuario.pragma.emason.infrastructure.util.ApiDocumentationConstants;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,7 +25,7 @@ public class SecurityConfig {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
 
-    //En requestMatchers() se debe especificar el path que NO se desea proteger
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
@@ -32,13 +33,13 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
 
-                                .requestMatchers("/auth/**").permitAll()
-                                .requestMatchers("/role/**").hasAuthority("ADMIN")
-                                .requestMatchers("/category/**").hasAuthority("ADMIN")
-                                .requestMatchers("/brand/**").hasAuthority("ADMIN")
-                                .requestMatchers("/item/**").hasAuthority("ADMIN")
-                                .requestMatchers("/supply/**").hasAuthority("AUX_BODEGA")
-                                .requestMatchers("/cart/**").hasAuthority("CLIENTE")
+                                .requestMatchers(ApiDocumentationConstants.AUTH_PATH).permitAll()
+                                .requestMatchers(ApiDocumentationConstants.ROLE_PATH).hasAuthority(ApiDocumentationConstants.AUTHORITY_ADMIN)
+                                .requestMatchers(ApiDocumentationConstants.CATEGORY_PATH).hasAuthority(ApiDocumentationConstants.AUTHORITY_ADMIN)
+                                .requestMatchers(ApiDocumentationConstants.BRAND_PATH).hasAuthority(ApiDocumentationConstants.AUTHORITY_ADMIN)
+                                .requestMatchers(ApiDocumentationConstants.ITEM_PATH).hasAuthority(ApiDocumentationConstants.AUTHORITY_ADMIN)
+                                .requestMatchers(ApiDocumentationConstants.SUPPLY_PATH).hasAuthority(ApiDocumentationConstants.AUTHORITY_AUX_BODEGA)
+                                .requestMatchers(ApiDocumentationConstants.CART_PATH).hasAuthority(ApiDocumentationConstants.AUTHORITY_CLIENTE)
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(sessionManagement ->

@@ -1,6 +1,7 @@
 package com.usuario.pragma.emason.application.dto;
 
 
+import com.usuario.pragma.emason.application.util.ApplicationConstants;
 import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,32 +11,32 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public class UserAccountRequestDTO {
-    @NotNull(message = "Name is required")
-    @NotBlank(message = "Name no be blank")
+    @NotNull(message = ApplicationConstants.NAME_REQUIRED)
+    @NotBlank(message = ApplicationConstants.NAME_NOT_BLANK)
     private String name;
 
-    @NotNull(message = "Last name is required")
-    @NotBlank(message = "Last no be blank")
+    @NotNull(message = ApplicationConstants.LAST_NAME_REQUIRED)
+    @NotBlank(message = ApplicationConstants.LAST_NAME_NOT_BLANK)
     private String lastName;
 
-    @NotNull(message = "Identity document is required")
+    @NotNull(message = ApplicationConstants.IDENTITY_DOCUMENT_REQUIRED)
     private Long identityDocument;
 
-    @Size(min = 7, max = 13, message = "Phone number must be between 7 and 13 digits")
+    @Size(min = 7, max = 13, message = ApplicationConstants.PHONE_SIZE)
     private String phone;
 
-    @NotNull(message = "Birth date is required")
+    @NotNull(message = ApplicationConstants.BIRTH_DATE_REQUIRED)
     private LocalDate birthDate;
 
-    @NotNull(message = "Email is required")
-    @NotBlank(message = "Email no be blank")
-    @Email(message = "Email should be valid")
+    @NotNull(message = ApplicationConstants.EMAIL_REQUIRED)
+    @NotBlank(message = ApplicationConstants.EMAIL_NOT_BLANK)
+    @Email(message = ApplicationConstants.EMAIL_VALID)
     private String email;
 
     @NotNull
-    @NotBlank(message = "Password is required")
+    @NotBlank(message = ApplicationConstants.PASSWORD_REQUIRED)
     private String password;
 
-    @NotNull(message = "Role is required")
+    @NotNull(message = ApplicationConstants.ROLE_ID_REQUIRED)
     private Long roleId;
 }

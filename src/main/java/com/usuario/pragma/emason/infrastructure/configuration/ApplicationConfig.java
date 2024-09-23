@@ -26,6 +26,7 @@ public class ApplicationConfig {
     }
 
 
+
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
@@ -41,7 +42,7 @@ public class ApplicationConfig {
     }
 
 
-    //Cambiar
+
     @Bean
     public UserDetailsService userDetailsService(){
         return iUserAccountRepository::findByEmail;

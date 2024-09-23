@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 public class CategoryController {
 
+
+
     @PostMapping("/create")
     public ResponseEntity<String> createCategory(@RequestBody String categoryString){
         return ResponseEntity.ok("Category created");

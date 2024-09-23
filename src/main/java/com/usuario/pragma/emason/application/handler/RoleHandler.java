@@ -17,6 +17,7 @@ public class RoleHandler implements IRoleHandler{
     private final IRoleResponseMapper iRoleResponseMapper;
 
 
+
     @Override
     public RoleResponseDTO getRoleById(Long id) {
         Role role = iRoleService.getRoleById(id);

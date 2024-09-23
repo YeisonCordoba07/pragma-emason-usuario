@@ -29,6 +29,7 @@ public class BeanConfiguration {
     private final IRoleEntityMapper iRoleEntityMapper;
 
 
+
     @Bean
     public IUserAccountPersistence iUserAccountPersistence() {
         return new UserAccountJpaAdapter(iUserAccountRepository, iUserAccountEntityMapper, iEncryptPassword);

@@ -1,6 +1,7 @@
 package com.usuario.pragma.emason.application.handler.auth;
 
 
+import com.usuario.pragma.emason.application.util.ApplicationConstants;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -15,32 +16,25 @@ import java.util.function.Function;
 @Service
 public class JwtHandler {
 
-    private final SecretKey key = Keys.hmacShaKeyFor("mi_clave_secreta_fija_que_debe_ser_larga_123456".getBytes());
+    private final SecretKey key = Keys.hmacShaKeyFor(ApplicationConstants.SECRET_KEY_PASSWORD.getBytes());
+
 
 
     public String getToken(String email) {
         return Jwts.builder()
-                .setSubject(email)  // Se usa el email como subject
-                .setIssuedAt(new Date())  // Fecha de emisión
-                .setExpiration(new Date(System.currentTimeMillis() + 180000))
-                .signWith(key)  // Firma con la clave secreta
-                .compact();  // Compacta y devuelve el token
+                .setSubject(email)  // Use the email as the subject
+                .setIssuedAt(new Date())  // Emission date
+                .setExpiration(new Date(System.currentTimeMillis() + ApplicationConstants.TOKEN_EXPIRATION_TIME))  // Expiration date
+                .signWith(key)  // Sign with the secret key
+                .compact();  // Compact and return the token
     }
 
-    public String getToken(String email, String role) {
-        return Jwts.builder()
-                .setSubject(email)
-                .claim("role", "ROLE_" + role)  // Asegúrate de que el rol tenga el prefijo
-                .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + + 180000))
-                .signWith(key)
-                .compact();
-    }
 
 
     public String getEmailFromToken(String token) {
         return getClaim(token, Claims::getSubject);
     }
+
 
 
     public boolean isTokenValid(String token, String emailAccount) {
@@ -49,14 +43,16 @@ public class JwtHandler {
     }
 
 
+
     private Claims getAllClaims(String token){
         return Jwts
                 .parserBuilder()
-                .setSigningKey(getKey())  // Usa la clave secreta para validar
+                .setSigningKey(getKey())  // Use the secret key to validate
                 .build()
-                .parseClaimsJws(token)  // Decodifica el token
-                .getBody();  // Devuelve los claims (reclamaciones)
+                .parseClaimsJws(token)  // Decode the token
+                .getBody();  // Returns the claims
     }
+
 
 
     public <T> T getClaim(String token, Function<Claims, T> claimsResolver){
@@ -65,9 +61,11 @@ public class JwtHandler {
     }
 
 
+
     public Date getExpiration(String token){
         return getClaim(token, Claims::getExpiration);
     }
+
 
 
     public boolean isTokenExpired(String token){

@@ -13,15 +13,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class CartController {
 
+
+
     @PostMapping("/add")
     public ResponseEntity<String> addToCart(@RequestBody String cartString){
         return ResponseEntity.ok("Cart created");
     }
 
+
+
     @PostMapping("/remove")
     public ResponseEntity<String> removeFromCart(@RequestBody String cartString){
         return ResponseEntity.ok("Cart removed");
     }
+
+
 
     @PostMapping("/buy")
     public ResponseEntity<String> buyCart(@RequestBody String cartString){

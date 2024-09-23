@@ -23,7 +23,6 @@ public class UserAccountUseCase implements IUserAccountService {
 
 
 
-
     @Override
     public void createUserAccount(UserAccount userAccount) {
         if(!isAdult(userAccount.getBirthDate())){
@@ -35,12 +34,10 @@ public class UserAccountUseCase implements IUserAccountService {
 
 
 
-
     @Override
     public UserAccount findByEmail(String email) {
         return iUserAccountPersistence.findByEmail(email);
     }
-
 
 
 

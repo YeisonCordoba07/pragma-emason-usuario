@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 public class BrandController {
 
+
+
     @PostMapping("/create")
     public ResponseEntity<String> createBrand(@RequestBody String brandString){
         return ResponseEntity.ok("Brand created");
