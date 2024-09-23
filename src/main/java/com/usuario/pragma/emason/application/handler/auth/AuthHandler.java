@@ -34,8 +34,11 @@ public class AuthHandler implements IAuthHandler {
         UserAccount userAccount = iUserAccountService.findByEmail(loginRequestDTO.getEmail());
 
         String token = jwtHandler.getToken(userAccount.getEmail());
+        String userRole = userAccount.getRole().toString();
+
         return AuthResponseDTO.builder()
                 .token(token)
+                .role(userRole)
                 .build();
     }
 
@@ -46,10 +49,12 @@ public class AuthHandler implements IAuthHandler {
 
         UserAccount userAccount = iUserAccountRequestMapper.toUserAccount(userAccountRequestDTO);
 
+
         iUserAccountService.createUserAccount(userAccount);
 
         return AuthResponseDTO.builder()
                 .token(jwtHandler.getToken(userAccount.getEmail()))
+                .role(userAccount.getRole().toString())
                 .build();
     }
 
