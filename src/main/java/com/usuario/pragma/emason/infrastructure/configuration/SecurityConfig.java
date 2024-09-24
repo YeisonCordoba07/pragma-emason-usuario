@@ -40,6 +40,7 @@ public class SecurityConfig {
                                 .requestMatchers(ApiDocumentationConstants.ITEM_PATH).hasAuthority(ApiDocumentationConstants.AUTHORITY_ADMIN)
                                 .requestMatchers(ApiDocumentationConstants.SUPPLY_PATH).hasAuthority(ApiDocumentationConstants.AUTHORITY_AUX_BODEGA)
                                 .requestMatchers(ApiDocumentationConstants.CART_PATH).hasAuthority(ApiDocumentationConstants.AUTHORITY_CLIENTE)
+                                .requestMatchers(ApiDocumentationConstants.USER_PATH).hasAuthority(ApiDocumentationConstants.AUTHORITY_ADMIN)
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(sessionManagement ->

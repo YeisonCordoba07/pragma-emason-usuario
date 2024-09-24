@@ -9,6 +9,8 @@ import com.usuario.pragma.emason.domain.model.UserAccount;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,8 +30,8 @@ public class AuthHandler implements IAuthHandler {
 
     @Override
     public AuthResponseDTO login(LoginRequestDTO loginRequestDTO) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequestDTO.getEmail(), loginRequestDTO.getPassword()));
-
+        Authentication auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequestDTO.getEmail(), loginRequestDTO.getPassword()));
+        SecurityContextHolder.getContext().setAuthentication(auth);
         UserAccount userAccount = iUserAccountService.findByEmail(loginRequestDTO.getEmail());
 
         String token = jwtHandler.getToken(userAccount.getEmail());

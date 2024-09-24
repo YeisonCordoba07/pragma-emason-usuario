@@ -66,5 +66,6 @@ public class ApiDocumentationConstants {
     public static final String ITEM_PATH = "/item/**";
     public static final String SUPPLY_PATH = "/supply/**";
     public static final String CART_PATH = "/cart/**";
+    public static final String USER_PATH = "/user/**";
 
 }
