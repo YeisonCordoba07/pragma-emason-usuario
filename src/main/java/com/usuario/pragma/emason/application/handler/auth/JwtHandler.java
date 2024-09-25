@@ -20,9 +20,10 @@ public class JwtHandler {
 
 
 
-    public String getToken(String email) {
+    public String getToken(String email, String roles) {
         return Jwts.builder()
                 .setSubject(email)  // Use the email as the subject
+                .claim("roles", roles)
                 .setIssuedAt(new Date())  // Emission date
                 .setExpiration(new Date(System.currentTimeMillis() + ApplicationConstants.TOKEN_EXPIRATION_TIME))  // Expiration date
                 .signWith(key)  // Sign with the secret key

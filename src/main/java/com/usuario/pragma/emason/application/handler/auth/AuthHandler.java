@@ -27,15 +27,20 @@ public class AuthHandler implements IAuthHandler {
     private final AuthenticationManager authenticationManager;
 
 
-
     @Override
     public AuthResponseDTO login(LoginRequestDTO loginRequestDTO) {
-        Authentication auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequestDTO.getEmail(), loginRequestDTO.getPassword()));
+        Authentication auth = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        loginRequestDTO.getEmail(),
+                        loginRequestDTO.getPassword())
+        );
+
         SecurityContextHolder.getContext().setAuthentication(auth);
         UserAccount userAccount = iUserAccountService.findByEmail(loginRequestDTO.getEmail());
 
-        String token = jwtHandler.getToken(userAccount.getEmail());
         String userRole = userAccount.getRole().toString();
+        String token = jwtHandler.getToken(userAccount.getEmail(), userRole);
+
 
         return AuthResponseDTO.builder()
                 .token(token)
@@ -53,7 +58,7 @@ public class AuthHandler implements IAuthHandler {
 
 
         return AuthResponseDTO.builder()
-                .token(jwtHandler.getToken(userAccount.getEmail()))
+                .token(jwtHandler.getToken(userAccount.getEmail(), userAccount.getRole().toString()))
                 .role(userAccount.getRole().toString())
                 .build();
     }
