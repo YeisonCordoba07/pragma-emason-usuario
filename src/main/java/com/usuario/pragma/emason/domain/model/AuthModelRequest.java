@@ -1,18 +1,20 @@
-package com.usuario.pragma.emason.application.dto.auth;
+package com.usuario.pragma.emason.domain.model;
 
-public class AuthRequestDTO {
+public class AuthModelRequest {
+
     private String email;
     private String password;
 
 
 
-    public AuthRequestDTO() {
-    }
 
-    public AuthRequestDTO(String email, String password) {
+    public AuthModelRequest(String email, String password) {
         this.email = email;
         this.password = password;
     }
+
+    public AuthModelRequest(){}
+
 
 
 

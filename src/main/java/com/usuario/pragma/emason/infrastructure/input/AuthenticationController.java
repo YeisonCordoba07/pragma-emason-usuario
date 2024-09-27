@@ -1,7 +1,7 @@
 package com.usuario.pragma.emason.infrastructure.input;
 
+import com.usuario.pragma.emason.application.dto.auth.AuthRequestDTO;
 import com.usuario.pragma.emason.application.dto.auth.AuthResponseDTO;
-import com.usuario.pragma.emason.application.dto.auth.LoginRequestDTO;
 
 import com.usuario.pragma.emason.application.dto.UserAccountRequestDTO;
 import com.usuario.pragma.emason.application.handler.auth.IAuthHandler;
@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 
 @RestController
 @RequestMapping("/auth")
@@ -38,8 +39,8 @@ public class AuthenticationController {
                     content = @Content)
     })
     @PostMapping("/login")
-    public ResponseEntity<AuthResponseDTO> login(@RequestBody LoginRequestDTO loginRequestDTO){
-        return ResponseEntity.ok(iAuthHandler.login(loginRequestDTO));
+    public ResponseEntity<AuthResponseDTO> login(@RequestBody AuthRequestDTO authRequestDTO){
+        return ResponseEntity.ok(iAuthHandler.login(authRequestDTO));
     }
 
 

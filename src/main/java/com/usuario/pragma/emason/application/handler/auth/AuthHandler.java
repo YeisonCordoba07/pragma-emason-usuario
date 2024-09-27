@@ -1,7 +1,7 @@
 package com.usuario.pragma.emason.application.handler.auth;
 
+import com.usuario.pragma.emason.application.dto.auth.AuthRequestDTO;
 import com.usuario.pragma.emason.application.dto.auth.AuthResponseDTO;
-import com.usuario.pragma.emason.application.dto.auth.LoginRequestDTO;
 import com.usuario.pragma.emason.application.dto.UserAccountRequestDTO;
 import com.usuario.pragma.emason.application.mapper.IUserAccountRequestMapper;
 import com.usuario.pragma.emason.domain.api.IUserAccountService;
@@ -27,16 +27,18 @@ public class AuthHandler implements IAuthHandler {
     private final AuthenticationManager authenticationManager;
 
 
+
+
     @Override
-    public AuthResponseDTO login(LoginRequestDTO loginRequestDTO) {
+    public AuthResponseDTO login(AuthRequestDTO authRequestDTO) {
         Authentication auth = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        loginRequestDTO.getEmail(),
-                        loginRequestDTO.getPassword())
+                        authRequestDTO.getEmail(),
+                        authRequestDTO.getPassword())
         );
 
         SecurityContextHolder.getContext().setAuthentication(auth);
-        UserAccount userAccount = iUserAccountService.findByEmail(loginRequestDTO.getEmail());
+        UserAccount userAccount = iUserAccountService.findByEmail(authRequestDTO.getEmail());
 
         String userRole = userAccount.getRole().toString();
         String token = jwtHandler.getToken(userAccount.getEmail(), userRole);
@@ -47,6 +49,7 @@ public class AuthHandler implements IAuthHandler {
                 .role(userRole)
                 .build();
     }
+
 
 
 

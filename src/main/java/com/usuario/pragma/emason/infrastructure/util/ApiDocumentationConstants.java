@@ -55,17 +55,10 @@ public class ApiDocumentationConstants {
     //SECURITY CONFIG
     // Authorities
     public static final String AUTHORITY_ADMIN = "ADMIN";
-    public static final String AUTHORITY_AUX_BODEGA = "AUX_BODEGA";
-    public static final String AUTHORITY_CLIENTE = "CLIENTE";
 
     // URL paths
     public static final String AUTH_PATH = "/auth/**";
     public static final String ROLE_PATH = "/role/**";
-    public static final String CATEGORY_PATH = "/category/**";
-    public static final String BRAND_PATH = "/brand/**";
-    public static final String ITEM_PATH = "/item/**";
-    public static final String SUPPLY_PATH = "/supply/**";
-    public static final String CART_PATH = "/cart/**";
     public static final String USER_PATH = "/user/**";
 
 }
