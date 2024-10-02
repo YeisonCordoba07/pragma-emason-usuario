@@ -2,6 +2,7 @@ package com.usuario.pragma.emason.application.dto;
 
 
 import com.usuario.pragma.emason.application.util.ApplicationConstants;
+import com.usuario.pragma.emason.domain.model.EnumRole;
 import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -38,5 +39,5 @@ public class UserAccountRequestDTO {
     private String password;
 
     @NotNull(message = ApplicationConstants.ROLE_ID_REQUIRED)
-    private Long roleId;
+    private EnumRole role;
 }

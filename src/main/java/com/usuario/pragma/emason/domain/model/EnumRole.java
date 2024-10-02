@@ -1,4 +1,4 @@
-package com.usuario.pragma.emason.infrastructure.output.entity;
+package com.usuario.pragma.emason.domain.model;
 
     public enum EnumRole {
     ADMIN,

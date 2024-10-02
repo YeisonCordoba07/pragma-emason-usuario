@@ -1,8 +1,11 @@
 package com.usuario.pragma.emason.domain.usecase;
 
 
+import com.usuario.pragma.emason.domain.exception.AccessDeniedException;
+import com.usuario.pragma.emason.domain.exception.RoleNotFoundException;
 import com.usuario.pragma.emason.domain.exception.UnderAgeException;
 import com.usuario.pragma.emason.domain.api.IUserAccountService;
+import com.usuario.pragma.emason.domain.model.EnumRole;
 import com.usuario.pragma.emason.domain.model.UserAccount;
 import com.usuario.pragma.emason.domain.spi.IUserAccountPersistence;
 import com.usuario.pragma.emason.domain.util.DomainConstant;
@@ -27,6 +30,9 @@ public class UserAccountUseCase implements IUserAccountService {
     public void createUserAccount(UserAccount userAccount) {
         if(!isAdult(userAccount.getBirthDate())){
             throw new UnderAgeException(DomainConstant.UNDER_AGE_EXCEPTION);
+        }
+        if(userAccount.getRole() == EnumRole.ADMIN){
+            throw new AccessDeniedException(DomainConstant.ACCESS_DENIED_EXCEPTION_MESSAGE);
         }
 
         iUserAccountPersistence.createUserAccount(userAccount);
