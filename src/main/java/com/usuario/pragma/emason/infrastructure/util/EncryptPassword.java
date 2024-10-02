@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class EncryptPassword implements IEncryptPassword {
 
+
+
     // Encrypt a password using bcrypt
     @Override
     public  String encryptPassword(String plainPassword) {
@@ -16,6 +18,8 @@ public class EncryptPassword implements IEncryptPassword {
         // Encrypt the password using the salt
         return BCrypt.hashpw(plainPassword, salt);
     }
+
+
 
     // Verify if the plain password matches the hashed password
     @Override

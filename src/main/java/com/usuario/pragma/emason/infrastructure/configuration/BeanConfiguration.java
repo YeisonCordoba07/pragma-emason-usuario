@@ -29,6 +29,7 @@ public class BeanConfiguration {
     private final IRoleEntityMapper iRoleEntityMapper;
 
 
+
     @Bean
     public IUserAccountPersistence iUserAccountPersistence() {
         return new UserAccountJpaAdapter(iUserAccountRepository, iUserAccountEntityMapper, iEncryptPassword);
@@ -36,7 +37,7 @@ public class BeanConfiguration {
 
     @Bean
     public IUserAccountService iUserAccountService() {
-        return new UserAccountUseCase(iUserAccountPersistence(), iRolePersistence());
+        return new UserAccountUseCase(iUserAccountPersistence());
     }
 
 

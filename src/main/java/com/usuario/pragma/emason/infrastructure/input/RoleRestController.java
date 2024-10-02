@@ -4,10 +4,12 @@ package com.usuario.pragma.emason.infrastructure.input;
 import com.usuario.pragma.emason.application.dto.RoleResponseDTO;
 import com.usuario.pragma.emason.application.handler.IRoleHandler;
 import com.usuario.pragma.emason.infrastructure.util.ApiDocumentationConstants;
+
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -16,12 +18,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
 @RequestMapping("/role")
 @RequiredArgsConstructor
 @Validated
 public class RoleRestController {
+
     private final IRoleHandler iRoleHandler;
+
+
 
     @Operation(
             summary = ApiDocumentationConstants.OPERATION_SUMMARY_GET_BY_ID,
@@ -41,5 +47,8 @@ public class RoleRestController {
             @PathVariable Long id) {
         return ResponseEntity.ok(iRoleHandler.getRoleById(id));
     }
+
+
+
 
 }

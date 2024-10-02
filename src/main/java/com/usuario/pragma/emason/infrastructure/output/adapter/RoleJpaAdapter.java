@@ -19,6 +19,7 @@ public class RoleJpaAdapter implements IRolePersistence {
     private final IRoleEntityMapper iRoleEntityMapper;
 
 
+
     @Override
     public Role getRoleById(Long id) {
         Optional<RoleEntity> optionalRoleEntity = iRoleRepository.findById(id);
