@@ -39,7 +39,7 @@ repositories {
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-	//implementation("org.springframework.boot:spring-boot-starter-security")
+	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation ("org.springframework.boot:spring-boot-starter-validation")
 	implementation ("org.mapstruct:mapstruct:1.5.3.Final")
@@ -62,7 +62,24 @@ dependencies {
 	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.0")
 
 	//implementation ("org.springframework.boot:spring-boot-starter-security")
-	//implementation ("org.springframework.security:spring-security-core")
+	implementation ("org.springframework.security:spring-security-core")
+
+	implementation("org.springframework.boot:spring-boot-starter-security")
+// https://mvnrepository.com/artifact/com.auth0/java-jwt
+	implementation("com.auth0:java-jwt:4.4.0")
+
+	// https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-api
+	implementation("io.jsonwebtoken:jjwt-api:0.11.5")
+
+	// https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-impl
+	runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.5")
+
+	// https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-jackson
+	runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.5")
+
+
+
+
 }
 
 tasks.withType<Test> {

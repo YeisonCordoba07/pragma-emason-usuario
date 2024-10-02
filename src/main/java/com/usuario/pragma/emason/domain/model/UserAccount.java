@@ -1,13 +1,15 @@
 package com.usuario.pragma.emason.domain.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.usuario.pragma.emason.infrastructure.output.entity.EnumRole;
+import jakarta.persistence.*;
+
+
 
 import java.time.LocalDate;
 
-@Getter
-@Setter
-public class UserAccount {
+
+
+public class UserAccount  {
 
     private Long id;
     private String name;
@@ -15,13 +17,15 @@ public class UserAccount {
     private Long identityDocument;
     private String phone;
     private LocalDate birthDate;
+
     private String email;
     private String password;
 
-    private Long roleId;
+    @Enumerated(EnumType.STRING)
+    private EnumRole role;
 
 
-    public UserAccount(String name, String lastName, Long identityDocument, String phone, LocalDate birthDate, String email, String password, Long roleId) {
+    public UserAccount(String name, String lastName, Long identityDocument, String phone, LocalDate birthDate, String email, String password, EnumRole role) {
         this.name = name;
         this.lastName = lastName;
         this.identityDocument = identityDocument;
@@ -29,7 +33,7 @@ public class UserAccount {
         this.birthDate = birthDate;
         this.email = email;
         this.password = password;
-        this.roleId = roleId;
+        this.role = role;
     }
 
 
@@ -45,6 +49,7 @@ public class UserAccount {
     public void setId(Long id) {
         this.id = id;
     }
+
     public String getName() {
         return name;
     }
@@ -101,11 +106,11 @@ public class UserAccount {
         this.password = password;
     }
 
-    public Long getRoleId() {
-        return roleId;
+    public EnumRole getRole() {
+        return role;
     }
 
-    public void setRoleId(Long roleId) {
-        this.roleId = roleId;
+    public void setRole(EnumRole role) {
+        this.role = role;
     }
 }

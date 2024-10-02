@@ -6,7 +6,17 @@ spring:
     url: jdbc:mysql://localhost/emason-usuario
     username: root
     password: root
+  security:
+    user:
+      name: yeison
+      password: yeison
 
   jpa:
     hibernate:
       ddl-auto: update
+
+logging:
+  level:
+    org:
+      springframework:
+        security: TRACE

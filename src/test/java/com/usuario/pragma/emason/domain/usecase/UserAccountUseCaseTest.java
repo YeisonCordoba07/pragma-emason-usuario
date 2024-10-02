@@ -1,15 +1,14 @@
 package com.usuario.pragma.emason.domain.usecase;
 
 
-import com.usuario.pragma.emason.domain.exception.RoleNotFoundException;
-import com.usuario.pragma.emason.domain.model.Role;
-import com.usuario.pragma.emason.domain.spi.IRolePersistence;
+
 import com.usuario.pragma.emason.domain.spi.IUserAccountPersistence;
 import com.usuario.pragma.emason.domain.util.DomainConstant;
 import com.usuario.pragma.emason.domain.exception.UnderAgeException;
 import com.usuario.pragma.emason.domain.model.UserAccount;
 
 
+import com.usuario.pragma.emason.infrastructure.output.entity.EnumRole;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.InjectMocks;
@@ -27,8 +26,6 @@ class UserAccountUseCaseTest {
     @Mock
     private IUserAccountPersistence iUserAccountPersistence;
 
-    @Mock
-    private IRolePersistence iRolePersistence;
 
     @InjectMocks
     private UserAccountUseCase userAccountUseCase;
@@ -42,14 +39,16 @@ class UserAccountUseCaseTest {
     void createUserAccount_SuccessfulCreation() {
         // Arrange
         UserAccount userAccount = new UserAccount();
-        userAccount.setBirthDate(LocalDate.of(2000, 1, 1));
-        userAccount.setRoleId(1L);
+        userAccount.setId(1L);
+        userAccount.setName("John");
+        userAccount.setLastName("Doe");
+        userAccount.setIdentityDocument(123456789L);
+        userAccount.setPhone("555-1234");
+        userAccount.setBirthDate(LocalDate.of(1990, 5, 15));
+        userAccount.setEmail("john.doe@example.com");
         userAccount.setPassword("password123");
+        userAccount.setRole(EnumRole.AUX_BODEGA);
 
-        Role role = new Role();
-        role.setId(1L);
-
-        when(iRolePersistence.getRoleById(1L)).thenReturn(role);
 
         // Act
         userAccountUseCase.createUserAccount(userAccount);
@@ -64,8 +63,16 @@ class UserAccountUseCaseTest {
     void createUserAccount_ThrowsUnderAgeException() {
         // Arrange
         UserAccount userAccount = new UserAccount();
-        userAccount.setBirthDate(LocalDate.now().minusYears(16)); // User is 16 years old
-        userAccount.setRoleId(1L);
+
+        userAccount.setId(1L);
+        userAccount.setName("John");
+        userAccount.setLastName("Doe");
+        userAccount.setIdentityDocument(123456789L);
+        userAccount.setPhone("555-1234");
+        userAccount.setBirthDate(LocalDate.now().minusYears(16));  // User is 16 years old
+        userAccount.setEmail("john.doe@example.com");
+        userAccount.setPassword("password123");
+        userAccount.setRole(EnumRole.AUX_BODEGA);
 
         // Act & Assert
         UnderAgeException exception = assertThrows(UnderAgeException.class, () ->
@@ -77,23 +84,6 @@ class UserAccountUseCaseTest {
     }
 
 
-    @Test
-    void createUserAccount_ThrowsRoleNotFoundException() {
-        // Arrange
-        UserAccount userAccount = new UserAccount();
-        userAccount.setBirthDate(LocalDate.of(2000, 1, 1));
-        userAccount.setRoleId(1L);
-        userAccount.setPassword("password123");
-
-        when(iRolePersistence.getRoleById(1L)).thenReturn(null);
-
-        // Act & Assert
-        RoleNotFoundException exception = assertThrows(RoleNotFoundException.class, () ->
-                userAccountUseCase.createUserAccount(userAccount)
-        );
-        assertEquals(DomainConstant.ROLE_NOT_FOUND_EXCEPTION, exception.getMessage());
-        verify(iUserAccountPersistence, never()).createUserAccount(any(UserAccount.class));
-    }
 
 
 
@@ -119,5 +109,37 @@ class UserAccountUseCaseTest {
 
         // Assert
         assertFalse(isAdult);
+    }
+
+    @Test
+    void findByEmail_SuccessfulSearch() {
+        // Arrange
+
+        UserAccount userAccount = new UserAccount();
+        userAccount.setId(1L);
+        userAccount.setName("John");
+        userAccount.setLastName("Doe");
+        userAccount.setIdentityDocument(123456789L);
+        userAccount.setPhone("555-1234");
+        userAccount.setBirthDate(LocalDate.of(1990, 5, 15));
+        userAccount.setEmail("john.doe@example.com");
+        userAccount.setPassword("password123");
+        userAccount.setRole(EnumRole.AUX_BODEGA);
+
+        when(iUserAccountPersistence.findByEmail(userAccount.getEmail())).thenReturn(userAccount);
+
+        UserAccount result = userAccountUseCase.findByEmail(userAccount.getEmail());
+        assertEquals(userAccount, result);
+        assertEquals(userAccount.getId(), result.getId());
+        assertEquals(userAccount.getName(), result.getName());
+        assertEquals(userAccount.getLastName(), result.getLastName());
+        assertEquals(userAccount.getIdentityDocument(), result.getIdentityDocument());
+        assertEquals(userAccount.getPhone(), result.getPhone());
+        assertEquals(userAccount.getBirthDate(), result.getBirthDate());
+        assertEquals(userAccount.getEmail(), result.getEmail());
+        assertEquals(userAccount.getPassword(), result.getPassword());
+        assertEquals(userAccount.getRole(), result.getRole());
+
+        verify(iUserAccountPersistence, times(1)).findByEmail(userAccount.getEmail());
     }
 }
