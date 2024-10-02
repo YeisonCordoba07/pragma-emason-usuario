@@ -26,6 +26,6 @@ public class ApplicationConstants {
     public static final String ROLE_ID_REQUIRED = "Role is required";
 
     // JWT Handler
-    public static final Integer TOKEN_EXPIRATION_TIME = 180000;
+    public static final Integer TOKEN_EXPIRATION_TIME = 86400000;
 
 }

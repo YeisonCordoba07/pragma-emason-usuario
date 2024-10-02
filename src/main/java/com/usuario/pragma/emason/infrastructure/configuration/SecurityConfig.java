@@ -34,7 +34,6 @@ public class SecurityConfig {
                         authorizeRequests
 
                                 .requestMatchers(ApiDocumentationConstants.AUTH_PATH).permitAll()
-                                .requestMatchers(ApiDocumentationConstants.ROLE_PATH).hasAuthority(ApiDocumentationConstants.AUTHORITY_ADMIN)
                                 .requestMatchers(ApiDocumentationConstants.USER_PATH).hasAuthority(ApiDocumentationConstants.AUTHORITY_ADMIN)
                                 .anyRequest().authenticated()
                 )
