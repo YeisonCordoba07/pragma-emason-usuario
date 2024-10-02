@@ -1,5 +1,6 @@
 package com.usuario.pragma.emason.infrastructure.output.entity;
 
+import com.usuario.pragma.emason.domain.model.EnumRole;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

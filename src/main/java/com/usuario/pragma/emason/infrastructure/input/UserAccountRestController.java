@@ -2,6 +2,7 @@ package com.usuario.pragma.emason.infrastructure.input;
 
 import com.usuario.pragma.emason.application.dto.UserAccountRequestDTO;
 import com.usuario.pragma.emason.application.handler.IUserAccountHandler;
+import com.usuario.pragma.emason.application.handler.UserAccountHandler;
 import com.usuario.pragma.emason.infrastructure.util.ApiDocumentationConstants;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -28,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserAccountRestController {
 
     private final IUserAccountHandler iUserAccountHandler;
-
+    private final UserAccountHandler userAccountHandler;
 
 
     @Operation(

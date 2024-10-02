@@ -2,13 +2,14 @@ package com.usuario.pragma.emason.domain.usecase;
 
 
 
+import com.usuario.pragma.emason.domain.exception.AccessDeniedException;
 import com.usuario.pragma.emason.domain.spi.IUserAccountPersistence;
 import com.usuario.pragma.emason.domain.util.DomainConstant;
 import com.usuario.pragma.emason.domain.exception.UnderAgeException;
 import com.usuario.pragma.emason.domain.model.UserAccount;
 
 
-import com.usuario.pragma.emason.infrastructure.output.entity.EnumRole;
+import com.usuario.pragma.emason.domain.model.EnumRole;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.InjectMocks;
@@ -141,5 +142,29 @@ class UserAccountUseCaseTest {
         assertEquals(userAccount.getRole(), result.getRole());
 
         verify(iUserAccountPersistence, times(1)).findByEmail(userAccount.getEmail());
+    }
+
+
+    @Test
+    void createUserAccount_ThrowsAccessDeniedException() {
+        // Arrange
+        UserAccount userAccount = new UserAccount();
+
+        userAccount.setName("John");
+        userAccount.setLastName("Doe");
+        userAccount.setIdentityDocument(123456789L);
+        userAccount.setPhone("555-1234");
+        userAccount.setBirthDate(LocalDate.now().minusYears(20));
+        userAccount.setEmail("john.doe@example.com");
+        userAccount.setPassword("password123");
+        userAccount.setRole(EnumRole.ADMIN);
+
+        // Act & Assert
+        AccessDeniedException exception = assertThrows(AccessDeniedException.class, () ->
+                userAccountUseCase.createUserAccount(userAccount)
+        );
+        assertEquals(DomainConstant.ACCESS_DENIED_EXCEPTION_MESSAGE, exception.getMessage());
+        verify(iUserAccountPersistence, never()).createUserAccount(any(UserAccount.class));
+
     }
 }

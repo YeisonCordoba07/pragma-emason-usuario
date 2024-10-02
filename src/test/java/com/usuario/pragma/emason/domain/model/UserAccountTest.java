@@ -1,6 +1,5 @@
 package com.usuario.pragma.emason.domain.model;
 
-import com.usuario.pragma.emason.infrastructure.output.entity.EnumRole;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
